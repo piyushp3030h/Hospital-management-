@@ -17,5 +17,5 @@ COPY . .
 # Collect static files
 RUN cd PatientPro && python manage.py collectstatic --noinput
 
-# Start the server
-CMD cd PatientPro && gunicorn PatientPro.wsgi --bind 0.0.0.0:$PORT
+# Start the server (migrate, create superuser, then run gunicorn)
+CMD cd PatientPro && python manage.py migrate --noinput && python manage.py create_superuser_auto && gunicorn PatientPro.wsgi --bind 0.0.0.0:$PORT
