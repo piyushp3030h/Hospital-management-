@@ -1,8 +1,0 @@
-[build]
-builder = "NIXPACKS"
-watchPatterns = ["/**"]
-
-[deploy]
-startCommand = "cd PatientPro && python manage.py collectstatic --noinput && gunicorn PatientPro.wsgi --bind 0.0.0.0:$PORT"
-restartPolicyType = "ON_FAILURE"
-restartPolicyMaxRetries = 10
